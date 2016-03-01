@@ -3,7 +3,6 @@ var sec = 0;
 var origin = {min:25, sec:0};
 printNumbers();
 
-var status = 1;
 
 function printNumbers() {
     document.getElementById("test").innerHTML = ('0' + min).slice(-2) + " " + ":" + " " + ('0' + sec).slice(-2);
@@ -23,15 +22,15 @@ function myTimer() {
     printNumbers();
 }
 
-function startStop() {
-    if (status == 0) {
+function startStop(status) {
+    if (status == stop) {
         clearInterval(myVar);
-        status = 1;
-        document.getElementById("startStop").innerHTML = "Play";
+        document.getElementById("play").style.display = 'inline-block';
+        document.getElementById("stop").style.display = 'none';
     } else {
-        status = 0;
         myVar = setInterval(function(){ myTimer() }, 1000);
-        document.getElementById("startStop").innerHTML = "Stop";
+        document.getElementById("stop").style.display = 'inline-block';
+        document.getElementById("play").style.display = 'none';
     }
 }
 
