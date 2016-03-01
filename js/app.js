@@ -1,8 +1,8 @@
-var min = 0;
-var sec = 20;
-var myVar = setInterval(function(){ myTimer() }, 1000);
+var min = 25;
+var sec = 0;
+printNumbers();
 
-var status = 0;
+var status = 1;
 
 function printNumbers() {
     document.getElementById("test").innerHTML = ('0' + min).slice(-2) + " " + ":" + " " + ('0' + sec).slice(-2);
@@ -49,6 +49,3 @@ function edit(e) {
         printNumbers();
     }
 }
-
-
-/*document.getElementById("test").innerHTML = d.getMinutes();*/
