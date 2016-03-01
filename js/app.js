@@ -4,6 +4,10 @@ var myVar = setInterval(function(){ myTimer() }, 1000);
 
 var status = 0;
 
+function printNumbers() {
+    document.getElementById("test").innerHTML = ('0' + min).slice(-2) + " " + ":" + " " + ('0' + sec).slice(-2);
+}
+
 function myTimer() {
     if (min == 0 && sec == 1) {
         clearInterval(myVar);
@@ -15,7 +19,7 @@ function myTimer() {
     } else {
         sec--;
     }
-    document.getElementById("test").innerHTML = ('0' + min).slice(-2) + " " + ":" + " " + ('0' + sec).slice(-2);
+    printNumbers();
 }
 
 function startStop() {
@@ -33,7 +37,17 @@ function startStop() {
 function reset() {
     clearInterval(myVar);
     min = sec = 0;
-    document.getElementById("test").innerHTML = ('0' + min).slice(-2) + " " + ":" + " " + ('0' + sec).slice(-2);
+    printNumbers();
+}
+
+function edit(e) {
+    if (e == plus) {
+        min++;
+        printNumbers();
+    } else if (min > 0) {
+        min--;
+        printNumbers();
+    }
 }
 
 
