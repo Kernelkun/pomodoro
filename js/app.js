@@ -1,5 +1,6 @@
 var min = 25;
 var sec = 0;
+var origin = {min:25, sec:0};
 printNumbers();
 
 var status = 1;
@@ -36,16 +37,19 @@ function startStop() {
 
 function reset() {
     clearInterval(myVar);
-    min = sec = 0;
+    min = origin.min;
+    sec = origin.sec;
     printNumbers();
 }
 
 function edit(e) {
     if (e == plus) {
         min++;
+        origin.min++;
         printNumbers();
     } else if (min > 0) {
         min--;
+        origin.min--;
         printNumbers();
     }
 }
