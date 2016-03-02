@@ -1,23 +1,27 @@
-var min = 25;
-var sec = 0;
-var origin = {min:25, sec:0};
+var pomodoro = {min:25, sec:0};
+var rest = {min:5, sec:0};
+var pOrigin = {min:25, sec:0};
+var rOrigin = {min:25, sec:0};
 printNumbers();
 
 
 function printNumbers() {
-    document.getElementById("test").innerHTML = ('0' + min).slice(-2) + " " + ":" + " " + ('0' + sec).slice(-2);
+    document.getElementById("pomodoro").innerHTML = ('0' + pomodoro.min).slice(-2) + " " + ":" + " " + ('0' + pomodoro.sec).slice(-2);
+    document.getElementById("rest").innerHTML = ('0' + rest.min).slice(-2) + " " + ":" + " " + ('0' + rest.sec).slice(-2);
+
 }
 
 function myTimer() {
-    if (min == 0 && sec == 1) {
+    if (pomodoro.min == 0 && pomodoro.sec == 0) {
         clearInterval(myVar);
+        return;
     }
     
-    if (sec == 0) {
-        sec = 59;
-        min--;
+    if (pomodoro.sec == 0) {
+        pomodoro.sec = 59;
+        pomodoro.min--;
     } else {
-        sec--;
+        pomodoro.sec--;
     }
     printNumbers();
 }
@@ -36,19 +40,31 @@ function startStop(status) {
 
 function reset() {
     clearInterval(myVar);
-    min = origin.min;
-    sec = origin.sec;
+    pomodoro.min = pOrigin.min;
+    pomodoro.sec = pOrigin.sec;
     printNumbers();
 }
 
 function edit(e) {
     if (e == plus) {
-        min++;
-        origin.min++;
+        pomodoro.min++;
+        pOrigin.min++;
         printNumbers();
-    } else if (min > 0) {
-        min--;
-        origin.min--;
+    } else if (pomodoro.min > 0) {
+        pomodoro.min--;
+        pOrigin.min--;
+        printNumbers();
+    }
+}
+
+function editRest(e) {
+    if (e == plus) {
+        rest.min++;
+        rOrigin.min++;
+        printNumbers();
+    } else if (rest.min > 0) {
+        rest.min--;
+        rOrigin.min--;
         printNumbers();
     }
 }

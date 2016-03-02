@@ -11,7 +11,7 @@
   <!--Import Google Icon Font-->
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -28,16 +28,31 @@
 </head>
 
 <body>
-  <div class="container-fluid text-center">
-      <div id="test"></div>
-      <div>
-          <button id="plus" onclick="edit(plus)">+</button>
-          <button id="minus" onclick="edit(minus)">-</button>
+  <div class="container">
+      <div class="row">
+          <div class="col l3 offset-l3">
+              <div id="pomodoro"></div>
+              <div>
+                  <button id="plus" onclick="edit(plus)">+</button>
+                  <button id="minus" onclick="edit(minus)">-</button>
+              </div>
+          </div>
+          <div class="col l3">
+              <div id="rest"></div>
+              <div>
+                  <button id="plus" onclick="editRest(plus)">+</button>
+                  <button id="minus" onclick="editRest(minus)">-</button>
+              </div>
+          </div>
       </div>
-      <div>
-          <button id="play" onclick="startStop(play)">Play</button>
-          <button id="stop" onclick="startStop(stop)">Stop</button>
-          <button id="reset" onclick="reset()">Reset</button>
+      <div class="row">
+          <div class="col l4 offset-l4">
+              <div>
+                  <button id="play" onclick="startStop(play)">Play</button>
+                  <button id="stop" onclick="startStop(stop)">Stop</button>
+                  <button id="reset" onclick="reset()">Reset</button>
+              </div>
+          </div>
       </div>
   </div>
 
