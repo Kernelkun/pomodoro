@@ -1,7 +1,7 @@
 var pomodoro = {min:0, sec:5};
 var rest = {min:0, sec:5};
 var pOrigin = {min:25, sec:0};
-var rOrigin = {min:25, sec:0};
+var rOrigin = {min:5, sec:0};
 printNumbers();
 
 
@@ -79,9 +79,15 @@ function control(status) {
 }
 
 function reset() {
-    clearInterval(pClock);
+    if (typeof pClock !== 'undefined') {
+        clearInterval(pClock);
+    } else if (typeof rClock !== 'undefined') {
+        clearInterval(rClock);
+    }
     pomodoro.min = pOrigin.min;
     pomodoro.sec = pOrigin.sec;
+    rest.min = rOrigin.min;
+    rest.sec = rOrigin.sec;
     printNumbers();
 }
 
