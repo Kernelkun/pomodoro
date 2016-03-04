@@ -88,6 +88,8 @@ function reset() {
     pomodoro.sec = pOrigin.sec;
     rest.min = rOrigin.min;
     rest.sec = rOrigin.sec;
+    document.getElementById("play").style.display = 'inline-block';
+    document.getElementById("stop").style.display = 'none';
     printNumbers();
 }
 
