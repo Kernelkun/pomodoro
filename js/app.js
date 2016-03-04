@@ -1,5 +1,5 @@
-var pomodoro = {min:25, sec:0};
-var rest = {min:5, sec:0};
+var pomodoro = {min:0, sec:5};
+var rest = {min:0, sec:5};
 var pOrigin = {min:25, sec:0};
 var rOrigin = {min:25, sec:0};
 printNumbers();
@@ -11,9 +11,16 @@ function printNumbers() {
 
 }
 
-function myTimer() {
+function pomodoroClock() {
     if (pomodoro.min == 0 && pomodoro.sec == 0) {
-        clearInterval(myVar);
+        clearInterval(pClock);
+        document.getElementById("play").onclick = function() { 
+            control('playRest'); 
+        };
+        document.getElementById("stop").onclick = function() {
+            control('stopRest');
+        }
+        rClock = setInterval(function(){ restClock() }, 1000);
         return;
     }
     
@@ -26,20 +33,53 @@ function myTimer() {
     printNumbers();
 }
 
-function startStop(status) {
-    if (status == stop) {
-        clearInterval(myVar);
+function restClock() {
+    if (rest.min == 0 && rest.sec == 0) {
+        clearInterval(rClock);
+        document.getElementById("play").onclick = function() { 
+            control('playPomodoro'); 
+        };
+        document.getElementById("stop").onclick = function() {
+            control('stopPomodoro');
+        };
+        document.getElementById("play").style.display = 'none';
+        document.getElementById("stop").style.display = 'none';
+        return;
+    }
+    
+    if (rest.sec == 0) {
+        rest.sec = 59;
+        rest.min--;
+    } else {
+        rest.sec--;
+    }
+    printNumbers();
+}
+
+function control(status) {
+    if (status == 'stopPomodoro') {
+        clearInterval(pClock);
         document.getElementById("play").style.display = 'inline-block';
         document.getElementById("stop").style.display = 'none';
-    } else {
-        myVar = setInterval(function(){ myTimer() }, 1000);
+    } else if (status == 'playPomodoro') {
+        pClock = setInterval(function(){ pomodoroClock() }, 1000);
+        document.getElementById("stop").style.display = 'inline-block';
+        document.getElementById("play").style.display = 'none';
+    }
+    
+    if (status == 'stopRest') {
+        clearInterval(rClock);
+        document.getElementById("play").style.display = 'inline-block';
+        document.getElementById("stop").style.display = 'none';
+    } else if (status == 'playRest') {
+        rClock = setInterval(function(){ restClock() }, 1000);
         document.getElementById("stop").style.display = 'inline-block';
         document.getElementById("play").style.display = 'none';
     }
 }
 
 function reset() {
-    clearInterval(myVar);
+    clearInterval(pClock);
     pomodoro.min = pOrigin.min;
     pomodoro.sec = pOrigin.sec;
     printNumbers();
