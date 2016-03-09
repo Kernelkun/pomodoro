@@ -20,6 +20,7 @@ body {
     border-color: black;
     border-style: solid;
     border-radius: 3px;
+    border-color: forestgreen;
     
     width: 400px;
     height: 200px;
@@ -31,6 +32,10 @@ body {
 }
 
 #pomodoro {
+    font-size: 65px;
+}
+
+#rest {
     font-size: 65px;
 }
 

@@ -6,9 +6,11 @@ printNumbers();
 
 
 function printNumbers() {
-    document.getElementById("pomodoro").innerHTML = ('0' + pomodoro.min).slice(-2) + " " + ":" + " " + ('0' + pomodoro.sec).slice(-2);
-    document.getElementById("rest").innerHTML = ('0' + rest.min).slice(-2) + " " + ":" + " " + ('0' + rest.sec).slice(-2);
-
+    if (document.getElementById("pomodoro")) {
+        document.getElementById("pomodoro").innerHTML = ('0' + pomodoro.min).slice(-2) + " " + ":" + " " + ('0' + pomodoro.sec).slice(-2);
+    } else if (document.getElementById("rest")) {
+        document.getElementById("rest").innerHTML = ('0' + rest.min).slice(-2) + " " + ":" + " " + ('0' + rest.sec).slice(-2);
+    }
 }
 
 function pomodoroClock() {
@@ -115,4 +117,28 @@ function editRest(e) {
         rOrigin.min--;
         printNumbers();
     }
+}
+
+function flip() {
+    if (document.getElementById("rest"))
+        {
+            document.getElementById("rest").id = "pomodoro";
+            document.getElementById("plus").onclick = function() { 
+                edit(plus); 
+            };
+            document.getElementById("minus").onclick = function() { 
+                edit(minus); 
+            };
+            printNumbers();
+        } else if (document.getElementById("pomodoro"))
+        {
+            document.getElementById("pomodoro").id = "rest";
+            document.getElementById("plus").onclick = function() { 
+                editRest(plus); 
+            };
+            document.getElementById("minus").onclick = function() { 
+                editRest(minus); 
+            };
+            printNumbers();
+        }
 }
