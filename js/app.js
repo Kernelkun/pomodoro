@@ -1,5 +1,5 @@
-var pomodoro = {min:0, sec:5};
-var rest = {min:0, sec:5};
+var pomodoro = {min:25, sec:0};
+var rest = {min:5, sec:0};
 var pOrigin = {min:25, sec:0};
 var rOrigin = {min:5, sec:0};
 printNumbers();
@@ -17,11 +17,12 @@ function pomodoroClock() {
     if (pomodoro.min == 0 && pomodoro.sec == 0) {
         clearInterval(pClock);
         document.getElementById("play").onclick = function() { 
-            control('playRest'); 
+            control('playRest');
         };
         document.getElementById("stop").onclick = function() {
             control('stopRest');
         }
+        flip();
         rClock = setInterval(function(){ restClock() }, 1000);
         return;
     }
